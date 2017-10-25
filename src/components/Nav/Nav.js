@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import "./Nav.css";
 import javascriptLogo from "../../assets/javascript.svg";
@@ -7,7 +8,8 @@ import javascriptLogo from "../../assets/javascript.svg";
 export function Nav( { cartTotal } ) {
 	return (
 		<nav className="nav">
-			<div className="nav__header-wrapper">
+			<Link to="/">
+				<div className="nav__header-wrapper">
 					<img
 						alt="javascript logo"
 						className="nav__javascript-logo"
@@ -17,7 +19,10 @@ export function Nav( { cartTotal } ) {
 						The JavaScript Framework Shop
 					</h3>
 			</div>
-			<p className="nav__cart">Cart ( ${ /* total price of products in cart */ } )</p>
+			</Link>
+			<Link to="/cart">
+			<p className="nav__cart">Cart ( ${ cartTotal } )</p>
+			</Link>
 		</nav>
 	);
 }

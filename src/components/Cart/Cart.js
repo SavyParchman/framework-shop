@@ -8,7 +8,9 @@ import { checkout } from "../../ducks/product";
 import CartItem from "./CartItem/CartItem";
 
 export function Cart( { checkout, history, productsInCart } ) {
+
 	const products = productsInCart.map( product => (
+
 		<CartItem
 			key={ product.id }
 			logo={ product.logo }
@@ -16,7 +18,14 @@ export function Cart( { checkout, history, productsInCart } ) {
 			price={ product.price }
 		/>
 	) );
+
 	const cartTotal = productsInCart.reduce( ( total, { price } ) => total + price, 0 );
+
+function checkoutAndRedirect() {
+	checkout();
+	history.push("/thank-you");
+}
+
 	return (
 		<div className="cart">
 			<h1>Cart</h1>
@@ -30,7 +39,7 @@ export function Cart( { checkout, history, productsInCart } ) {
 							<div className="cart__total">
 								${ cartTotal }
 							</div>
-							<button className="cart__checkout">Checkout</button>
+							<button className="cart__checkout" onClick={ checkoutAndRedirect }>Checkout</button>
 						</main>
 			}
 		</div>
